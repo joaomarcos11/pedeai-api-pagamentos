@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: java-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mongodb
+    environment:
+      MONGO_URI: mongodb://root:example@mongodb:27017/test?authSource=admin
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
