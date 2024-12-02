@@ -9,7 +9,10 @@ services:
     depends_on:
       - mongodb
     environment:
-      MONGO_URI: mongodb://root:example@mongodb:27017/test?authSource=admin
+      QUARKUS_MONGODB_CONNECTION_STRING: ${LOCAL_MONGODB_CONNECTION_STRING}
+      QUARKUS_MONGODB_DATABASE: ${LOCAL_MONGODB_DATABASE}
+    env_file:
+      - .env
 
   mongodb:
     image: mongo:latest
@@ -19,6 +22,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: test
     volumes:
       - mongo-data:/data/db
 
