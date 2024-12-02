@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-pagamentos-config
+data:
+  MONGODB_CONNECTION_STRING: "MONGODB_CONNECTION_STRING"
+  MONGODB_DATABASE: "MONGODB_DATABASE"

@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-pagamentos
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: app-pagamentos
+  template:
+    metadata:
+      labels:
+        app: app-pagamentos
+    spec:
+      containers:
+        - name: app-pagamentos
+          image: DOCKER_IMAGE
+          ports:
+            - containerPort: 8080
+          env:
+            - name: QUARKUS_MONGODB_CONNECTION_STRING
+              valueFrom:
+                configMapKeyRef:
+                  name: app-pagamentos-config
+                  key: MONGODB_CONNECTION_STRING
+            - name: QUARKUS_MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: app-pagamentos-config
+                  key: MONGODB_DATABASE
