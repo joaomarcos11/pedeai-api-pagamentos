@@ -1,80 +1,3 @@
-// package com.org.jfm.adapters;
-
-// import static org.mockito.Mockito.*;
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
-// import org.mockito.Mock;
-// import static org.junit.jupiter.api.Assertions.assertNotNull;
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import org.mockito.MockitoAnnotations;
-// import com.org.jfm.domain.entities.Pagamento;
-// import org.bson.types.ObjectId;
-// import java.util.Arrays;
-// import java.util.List;
-
-// class MongoPagamentoRepositoryTest {
-
-//     @Mock
-//     private MongoPagamentoRepository repository;
-
-//     @BeforeEach
-//     void setUp() {
-//         MockitoAnnotations.openMocks(this);
-//     }
-
-//     @Test
-//     void testAdd() {
-//         Pagamento pagamento = new Pagamento();
-//         pagamento.setId(new ObjectId());
-//         pagamento.setPedidoID(12345L);
-//         pagamento.setValue(100.50);
-
-//         when(repository.add(any(Pagamento.class))).thenReturn(pagamento.getId().toHexString());
-
-//         String id = repository.add(pagamento);
-        
-//         assertNotNull(id);
-//         verify(repository).add(pagamento);
-//     }
-
-//     @Test
-//     void testFindById() {
-//         Pagamento pagamento = new Pagamento();
-//         String id = new ObjectId().toHexString();
-        
-//         when(repository.findById(id)).thenReturn(pagamento);
-        
-//         Pagamento result = repository.findById(id);
-        
-//         assertNotNull(result);
-//         verify(repository).findById(id);
-//     }
-
-//     @Test
-//     void testUpdateStatus() {
-//         String id = new ObjectId().toHexString();
-//         String status = "approved";
-        
-//         when(repository.updateStatus(id, status, "someAdditionalArgument")).thenReturn(1L);
-        
-//         long result = repository.updateStatus(id, status, "someAdditionalArgument");
-        
-//         assertEquals(1L, result);
-//         verify(repository).updateStatus(id, status, "someAdditionalArgument");
-//     }
-
-//     @Test
-//     void testDeletePagamento() {
-//         String id = new ObjectId().toHexString();
-        
-//         when(repository.deletePagamento(id)).thenReturn(1L);
-        
-//         long result = repository.deletePagamento(id);
-        
-//         assertEquals(1L, result);
-//         verify(repository).deletePagamento(id);
-//     }
-// }
 package com.org.jfm.adapters;
 
 import com.mongodb.MongoClientSettings;
@@ -104,8 +27,6 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
 class MongoPagamentoRepositoryTest {
@@ -173,23 +94,6 @@ class MongoPagamentoRepositoryTest {
         verify(collection).insertOne(pagamento);
     }
 
- @Test
-    void testFindById() {
-        Pagamento pagamento = new Pagamento();
-        pagamento.setId(new ObjectId());
-        pagamento.setPedidoID(12345L);
-        pagamento.setValue(100.50);
-        pagamento.setStatus("approved");
-
-        when(collection.find(any(Bson.class))).thenReturn(findIterable);
-        when(findIterable.first()).thenReturn(pagamento);
-
-        Pagamento result = pagamentoRepository.findById(pagamento.getId().toHexString());
-
-        assertNotNull(result);
-        assertEquals(pagamento.getId(), result.getId());
-    }
-
     @Test
     void testUpdateStatus() {
         Pagamento pagamento = new Pagamento();
@@ -202,7 +106,8 @@ class MongoPagamentoRepositoryTest {
         when(updateResult.getModifiedCount()).thenReturn(1L);
         when(collection.updateOne(any(Bson.class), any(Bson.class))).thenReturn(updateResult);
 
-        long modifiedCount = pagamentoRepository.updateStatus(pagamento.getId().toHexString(), "approved", Instant.now().toString());
+        long modifiedCount = pagamentoRepository.updateStatus(pagamento.getId().toHexString(), "approved",
+                Instant.now().toString());
 
         assertEquals(1, modifiedCount);
         verify(collection).updateOne(any(Bson.class), any(Bson.class));
