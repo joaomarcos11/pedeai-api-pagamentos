@@ -100,8 +100,3 @@ jobs:
           kubectl apply -f deployment/app-pagamentos-deploy.yaml
           kubectl apply -f deployment/app-pagamentos-svc.yaml
           kubectl apply -f deployment/app-pagamentos-hpa.yaml
-      
-      - name: Wait for LB and deploy to EKS
-        run: |
-          aws elbv2 wait load-balancer-available --cli-connect-timeout 60 --region us-east-1 && \
-          kubectl apply -f deployment/ingress.yaml
