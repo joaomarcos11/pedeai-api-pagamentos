@@ -17,14 +17,6 @@ spec:
           image: DOCKER_IMAGE
           ports:
             - containerPort: 8080
-          env:
-            - name: QUARKUS_MONGODB_CONNECTION_STRING
-              valueFrom:
-                configMapKeyRef:
-                  name: app-pagamentos-config
-                  key: MONGODB_CONNECTION_STRING
-            - name: QUARKUS_MONGODB_DATABASE
-              valueFrom:
-                configMapKeyRef:
-                  name: app-pagamentos-config
-                  key: MONGODB_DATABASE
+          envFrom:
+            - configMapRef:
+                name: app-pagamentos-config
