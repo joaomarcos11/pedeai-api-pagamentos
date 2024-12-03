@@ -91,8 +91,8 @@ jobs:
           MONGODB_DATABASE: ${{ env.MONGODB_DATABASE }}
         run: |
           sed -i.bak "s|DOCKER_IMAGE|$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG|g" deployment/app-pagamentos-deploy.yaml && \
-          sed -i.bak "s|MONGODB_CONNECTION_STRING|$MONGODB_CONNECTION_STRING|g" deployment/app-pagamentos-cm.yaml && \
-          sed -i.bak "s|MONGODB_DATABASE|$MONGODB_DATABASE|g" deployment/app-pagamentos-cm.yaml
+          sed -i.bak "s|GH_MONGODB_CONNECTION_STRING|$MONGODB_CONNECTION_STRING|g" deployment/app-pagamentos-cm.yaml && \
+          sed -i.bak "s|GH_MONGODB_DATABASE|$MONGODB_DATABASE|g" deployment/app-pagamentos-cm.yaml
 
       - name: Deploy to EKS
         run: |
