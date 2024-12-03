@@ -33,9 +33,10 @@ public class PagamentoService {
         pagamento.setStatus(status);
         pagamento.setDateApproved(dateApproved);
         pagamentoRepository.updateStatus(id, status, dateApproved);
-
+        System.out.println("Pagamento aprovado: " + id);
         return id;
     }
+
     public Pagamento getPagamentoById(String id) {
         return pagamentoRepository.findById(id);
     }

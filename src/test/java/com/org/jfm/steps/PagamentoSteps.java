@@ -53,7 +53,7 @@ public class PagamentoSteps {
     @Given("que eu tenho um pagamento válido")
     public void queEuTenhoUmPagamentoValido() {
         pagamentoDTO = new PagamentoDTO();
-        pagamentoDTO.setPedidoID(67890L);
+        pagamentoDTO.setPedidoID("67890");
         pagamentoDTO.setValue(100.50);
 
         // Configure mock response

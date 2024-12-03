@@ -15,7 +15,7 @@ public class Pagamento {
 
     @BsonProperty("pedidoID")
     @Schema(description = "ID do pedido", example = "12345")
-    private Long pedidoID;
+    private String pedidoID;
 
     @BsonProperty("value")
     @Schema(description = "Valor do pagamento", example = "100.50")
@@ -42,11 +42,11 @@ public class Pagamento {
         this.id = id;
     }
 
-    public Long getPedidoID() {
+    public String getPedidoID() {
         return pedidoID;
     }
 
-    public void setPedidoID(Long pedidoID) {
+    public void setPedidoID(String pedidoID) {
         this.pedidoID = pedidoID;
     }
 

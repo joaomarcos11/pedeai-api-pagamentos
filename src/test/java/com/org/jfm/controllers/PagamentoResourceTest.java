@@ -34,7 +34,7 @@ class PagamentoResourceTest {
     @Test
     void testCreatePagamento() {
         PagamentoDTO pagamentoDTO = new PagamentoDTO();
-        pagamentoDTO.setPedidoID(12345L);
+        pagamentoDTO.setPedidoID("12345");
         pagamentoDTO.setValue(100.50);
 
         Pagamento pagamento = new Pagamento();
@@ -63,7 +63,7 @@ class PagamentoResourceTest {
     void testGetPagamentoById() {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(new ObjectId());
-        pagamento.setPedidoID(12345L);
+        pagamento.setPedidoID("12345");
         pagamento.setValue(100.50);
         pagamento.setStatus("approved");
 

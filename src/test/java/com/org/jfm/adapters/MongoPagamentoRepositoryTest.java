@@ -78,7 +78,7 @@ class MongoPagamentoRepositoryTest {
     void testAdd() {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(new ObjectId());
-        pagamento.setPedidoID(12345L);
+        pagamento.setPedidoID("12345");
         pagamento.setValue(100.50);
         pagamento.setStatus("pending");
 
@@ -98,7 +98,7 @@ class MongoPagamentoRepositoryTest {
     void testUpdateStatus() {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(new ObjectId());
-        pagamento.setPedidoID(12345L);
+        pagamento.setPedidoID("12345");
         pagamento.setValue(100.50);
         pagamento.setStatus("pending");
 
@@ -117,7 +117,7 @@ class MongoPagamentoRepositoryTest {
     void testDeletePagamento() {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(new ObjectId());
-        pagamento.setPedidoID(12345L);
+        pagamento.setPedidoID("12345");
         pagamento.setValue(100.50);
         pagamento.setStatus("pending");
 

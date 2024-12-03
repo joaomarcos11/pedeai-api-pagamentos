@@ -5,16 +5,16 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 @Schema(description = "DTO for creating a new Pagamento")
 public class PagamentoDTO {
     @Schema(description = "ID do pedido", example = "12345")
-    private Long pedidoID;
+    private String pedidoID;
 
     @Schema(description = "Valor do pagamento", example = "100.50")
     private Double value;
 
-    public Long getPedidoID() {
+    public String getPedidoID() {
         return pedidoID;
     }
 
-    public void setPedidoID(Long pedidoID) {
+    public void setPedidoID(String pedidoID) {
         this.pedidoID = pedidoID;
     }
 

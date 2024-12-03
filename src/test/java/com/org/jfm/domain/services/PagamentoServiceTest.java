@@ -35,7 +35,7 @@ class PagamentoServiceTest {
     @Test
     void testCreatePagamento() {
         Pagamento pagamento = new Pagamento();
-        pagamento.setPedidoID(12345L);
+        pagamento.setPedidoID("12345");
         pagamento.setValue(100.50);
         pagamento.setStatus("pending");
         pagamento.setDateCreated(Instant.now().toString());
@@ -56,7 +56,7 @@ class PagamentoServiceTest {
     void testGetPagamentoById() {
         Pagamento pagamento = new Pagamento();
         pagamento.setId(new ObjectId("60c72b2f9b1e8b3f4c8e4d3e"));
-        pagamento.setPedidoID(12345L);
+        pagamento.setPedidoID("12345");
         pagamento.setValue(100.50);
         pagamento.setStatus("approved");
 

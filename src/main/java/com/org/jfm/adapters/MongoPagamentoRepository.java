@@ -183,16 +183,19 @@ public class MongoPagamentoRepository implements PagamentoRepository {
                 .withCodecRegistry(codecRegistry);
 
         this.coll = database.getCollection("pagamentos", Pagamento.class);
+        System.out.println("MongoPagamentoRepository created");
     }
 
     @Override
     public String add(Pagamento pagamento) {
         coll.insertOne(pagamento);
+        System.out.println("Pagamento ID: " + pagamento.getId().toHexString());
         return pagamento.getId().toHexString();
     }
 
     @Override
     public Pagamento findById(String id) {
+        System.out.println("ID: " + id);
         return coll.find(eq("_id", new ObjectId(id))).first();
     }
 
@@ -202,12 +205,14 @@ public class MongoPagamentoRepository implements PagamentoRepository {
         Bson update = new Document("$set", new Document()
                 .append("status", status)
                 .append("dateApproved", dateApproved));
+        System.out.println("ID: " + id);
         return coll.updateOne(filter, update).getModifiedCount();
     }
 
     @Override
     public long deletePagamento(String id) {
         Bson filter = eq("_id", new ObjectId(id));
+        System.out.println("ID: " + id);    
         return coll.deleteOne(filter).getDeletedCount();
     }
 }
